@@ -16,7 +16,6 @@ public class Item {
     Axt:        Type 2
     Waffen:     Type 3
     Blöcke:     Type 4
-
      */
 
     public Item(int item_ID, int type, String path) {

@@ -13,9 +13,11 @@ public class Inventar {
                 inventar[i][j] = new Item();
             }
         }
+        // Als erstes ID (bei blöcken die nummer, die die tiles haben, bei werkzeug die nummer die sie abbauen können sollen), dann Pfad zum Tile Bild
         inventar[0][0] = new Item(2,2,"Tiles//Item_2.png");
         inventar[1][0] = new Item(1,1,"Tiles//Item_1.png");
         inventar[2][0] = new Item(4,4,"Tiles//dirt.png");
+        inventar[3][0] = new Item(1,4,"Tiles//grass.jpg");
     }
 
     public int getItemType(int x, int y) {return inventar[y][x].getType();}
