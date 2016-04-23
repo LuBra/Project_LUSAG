@@ -236,12 +236,12 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
             selected_Inventory_Field_Y = get_Mouse_Inventar_position_Y();
         }
         else {
-            if(spieler.getSelectedItem() == 1 || spieler.getSelectedItem() == 2) {
+            if(spieler.getSelectedItem() == 1 || spieler.getSelectedItem() == 2) {                                              //Wenn das ausgewählte Item dem Typ 1 (Spitzhacke) oder 2 (Axt) entspricht wird geprüft ob das tile abgebaut werden kann.
                 if (spieler.getSelectedItem() == world.getAbbau_ID(get_Mouse_Tile_position_Y(), get_Mouse_Tile_position_X())) {
                     world.Abbauen(get_Mouse_Tile_position_Y(), get_Mouse_Tile_position_X());
                 }
             }
-            if(spieler.getSelectedItem() == 4){
+            if(spieler.getSelectedItem() == 4){                                                                                 // Wenn Der Typ 4 ist (Block), wird überprüft ob er plaziert werden kann, dannach wird er plaziert
                 if(check_build(get_Mouse_Tile_position_X(),get_Mouse_Tile_position_Y()) == true) {
                     world.bauen(get_Mouse_Tile_position_X(), get_Mouse_Tile_position_Y(), spieler.getSelectedItem_ID());
                 }
@@ -329,6 +329,10 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
 
     }               ///wand berührungs detection, am besten nix mehr ändern
     public boolean check_build(int x, int y){
+        // platzier Regeln:
+        // 1. Darf nicht im Spieler platziert werden
+        // 2. Darf nicht in bereites mit anderen Blöcken belegte Plätze gebaut werden
+        // 3. Darf nur gebaut werden wenn irgend ein anderer block an den zu bauenden Block anliegend ist.
 
         // spieler colisions check
         boolean player_collision = true;

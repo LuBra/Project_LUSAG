@@ -99,7 +99,7 @@ public class World {
         else return 0;
     }
     public boolean getBebaubar(int x, int y){
-        if(x < 0) x = 0;
+        if(x < 0) x = 0;        //sicherheit um nicht auserhalb des Arrays zu landen.  Sollete noch am anderen rand implementiert werden kek
         if(y < 0) y = 0;
         if(worldmap[y][x] == 0) return true;
         else return false;
