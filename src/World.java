@@ -17,10 +17,10 @@ public class World {
         size_y = 25;
         create_world();
 
-        grass = new Tile("grass.jpg",1);        //tile bild pfad, und abbau ID  1=test
-        cloud = new Tile("cloud.jpg",1);
-        rinde = new Tile("rinde.JPG",2);
-        dirt = new Tile("dirt.png",1);
+        grass = new Tile("Tiles//grass.jpg",1);        //tile bild pfad, und abbau ID  1=test
+        cloud = new Tile("Tiles//cloud.jpg",1);
+        rinde = new Tile("Tiles//rinde.JPG",2);
+        dirt =  new Tile("Tiles//dirt.png",1);
     }
 
     public void create_world(){

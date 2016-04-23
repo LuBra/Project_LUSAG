@@ -23,7 +23,7 @@ public class Player {
         inventar = new Inventar();
 
         try {
-            spieler = ImageIO.read(new File("Player_clean.png"));
+            spieler = ImageIO.read(new File("Tiles//Player_clean.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

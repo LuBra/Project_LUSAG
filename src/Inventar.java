@@ -13,9 +13,9 @@ public class Inventar {
                 inventar[i][j] = new Item();
             }
         }
-        inventar[0][0] = new Item(2,2,"Item_2.png");
-        inventar[1][0] = new Item(1,1,"Item_1.png");
-        inventar[2][0] = new Item(4,4,"dirt.png");
+        inventar[0][0] = new Item(2,2,"Tiles//Item_2.png");
+        inventar[1][0] = new Item(1,1,"Tiles//Item_1.png");
+        inventar[2][0] = new Item(4,4,"Tiles//dirt.png");
     }
 
     public int getItemType(int x, int y) {return inventar[y][x].getType();}

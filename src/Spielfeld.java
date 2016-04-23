@@ -54,7 +54,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
         is_jumping = true;
 
         try {
-            background = ImageIO.read(new File("back.jpg"));
+            background = ImageIO.read(new File("Tiles//back.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
