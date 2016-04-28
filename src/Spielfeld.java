@@ -48,7 +48,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
         keytimer.start();
         gravitationtimer.start();
         timer.start();
-        tilesize = 40;                  //am besten gehen gerade Zahlen
+        tilesize = 20;                  //am besten gehen gerade Zahlen
         inventarsize = 30;
         jumpcount = 1;
         is_jumping = true;
@@ -178,6 +178,8 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
             repaint();
             //System.out.println(get_Mouse_Inventar_position_X() + " "+ get_Mouse_Inventar_position_Y());
             System.out.println(get_Mouse_Tile_position_X() + " "+ get_Mouse_Tile_position_Y());
+            resolution.height = this.getHeight();
+            resolution.width = this.getWidth();             //um Fenstergroese live anzupassen
         }
         if(e.getSource()==gravitationtimer){
             if(check_collision(2) == true) {                        //erst wenn er wieder den boden berührt ist isjumping false, weil man sonst unendlich hoch springen kann

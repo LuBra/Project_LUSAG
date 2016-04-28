@@ -11,6 +11,7 @@ public class Gui extends JFrame {
         spielfeld = new Spielfeld();
         spielfeld.addKeyListener(spielfeld);
         spielfeld.setFocusable(true);
+        spielfeld.setSize(800,600);
         add(spielfeld);
         pack();
         setLocationRelativeTo(null);
