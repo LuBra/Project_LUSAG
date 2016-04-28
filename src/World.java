@@ -15,8 +15,8 @@ public class World {
     private Tile stone;         //5
 
     public World(){
-        size_x = 300;
-        size_y = 200;
+        size_x = 150;
+        size_y = 100;
         generate = new Generator(size_x,size_y);
         worldmap = generate.getWorld();
         //create_world();

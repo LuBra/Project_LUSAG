@@ -22,6 +22,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
     private int inventarsize;
     private int jumpcount;
     private int mauspos_X,mauspos_Y;
+    private int zeichnenoffsetspieler_x, zeichnenoffsetspieler_y;
     private int selected_Inventory_Field_X,selected_Inventory_Field_Y;
     private boolean is_jumping;
     private char last_pressed_key;
@@ -31,6 +32,8 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
         setLayout(null);
         resolution = new Dimension(800,600);               //Fenster Auflösung
         setPreferredSize(resolution);
+        zeichnenoffsetspieler_x = (int) resolution.getWidth()/2;             //muss zu int gemacht werden weil double
+        zeichnenoffsetspieler_y = (int) resolution.getHeight()/2;
         world = new World();
         spieler = new Player();
         this.addKeyListener(this);
@@ -48,7 +51,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
         keytimer.start();
         gravitationtimer.start();
         timer.start();
-        tilesize = 20;                  //am besten gehen gerade Zahlen
+        tilesize = 26;                  //am besten gehen gerade Zahlen
         inventarsize = 30;
         jumpcount = 1;
         is_jumping = true;
@@ -79,8 +82,8 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
             }
         }
         //endregion
-        g.drawImage(spieler.getSpieler(),400,400,tilesize,tilesize,null);       //Spieler
-        g.drawRect(400+(tilesize/3),400,tilesize/3,tilesize);
+        g.drawImage(spieler.getSpieler(),zeichnenoffsetspieler_x,zeichnenoffsetspieler_y,tilesize,tilesize,null);       //Spieler
+        //g.drawRect(400+(tilesize/3),400,tilesize/3,tilesize);
         g.setColor(Color.RED);
         g.drawRect((selected_Inventory_Field_X * inventarsize) + 10,(selected_Inventory_Field_Y * inventarsize) + 10, inventarsize,inventarsize );
     }
@@ -180,6 +183,8 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
             System.out.println(get_Mouse_Tile_position_X() + " "+ get_Mouse_Tile_position_Y());
             resolution.height = this.getHeight();
             resolution.width = this.getWidth();             //um Fenstergroese live anzupassen
+            zeichnenoffsetspieler_x = (int) resolution.getWidth()/2;             //muss zu int gemacht werden weil double
+            zeichnenoffsetspieler_y = (int) resolution.getHeight()/2;
         }
         if(e.getSource()==gravitationtimer){
             if(check_collision(2) == true) {                        //erst wenn er wieder den boden berührt ist isjumping false, weil man sonst unendlich hoch springen kann
@@ -279,8 +284,8 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
     }
 
     public boolean check_collision(int direction){
-        double cache_player_X = spieler.getOffset_X()+400;
-        double cache_player_Y = spieler.getOffset_Y()+400;
+        double cache_player_X = spieler.getOffset_X()+zeichnenoffsetspieler_x;
+        double cache_player_Y = spieler.getOffset_Y()+zeichnenoffsetspieler_y;
         double tilepos_player_X1;                               //rechte seite
         double tilepos_player_X2;                               //linke seite
         double tilepos_player_Y;                                //oben
@@ -338,10 +343,10 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
 
         // spieler colisions check
         boolean player_collision = true;
-        int player_tile_position_X1 = ((spieler.getOffset_X() +400) + (tilesize/3*2 -1)) / tilesize;
-        int player_tile_position_X2 = ((spieler.getOffset_X() +400) + (tilesize/3 +1)) / tilesize;
-        int player_tile_position_Y1 = (spieler.getOffset_Y() +400) /tilesize;
-        int player_tile_position_Y2 = ((spieler.getOffset_Y() +400) + (tilesize-1)) / tilesize;
+        int player_tile_position_X1 = ((spieler.getOffset_X() +zeichnenoffsetspieler_x) + (tilesize/3*2 -1)) / tilesize;
+        int player_tile_position_X2 = ((spieler.getOffset_X() +zeichnenoffsetspieler_x) + (tilesize/3 +1)) / tilesize;
+        int player_tile_position_Y1 = (spieler.getOffset_Y() +zeichnenoffsetspieler_y) /tilesize;
+        int player_tile_position_Y2 = ((spieler.getOffset_Y() +zeichnenoffsetspieler_y) + (tilesize-1)) / tilesize;
         if((x == player_tile_position_X1 || x== player_tile_position_X2) && (y == player_tile_position_Y1 || x == player_tile_position_Y2)){player_collision = true;}
         else player_collision = false;
 

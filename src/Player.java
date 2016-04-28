@@ -17,7 +17,7 @@ public class Player {
 
     public Player(){
         Offset_X = 0;
-        Offset_Y = 0;
+        Offset_Y = 800;
         inventar_size_X = 10;
         inventar_size_Y = 2;
         inventar = new Inventar();
