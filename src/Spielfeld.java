@@ -176,8 +176,8 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==timer){
             repaint();
-            System.out.println(get_Mouse_Inventar_position_X() + " "+ get_Mouse_Inventar_position_Y());
-            //System.out.println(get_Mouse_Tile_position_X() + " "+ get_Mouse_Tile_position_Y());
+            //System.out.println(get_Mouse_Inventar_position_X() + " "+ get_Mouse_Inventar_position_Y());
+            System.out.println(get_Mouse_Tile_position_X() + " "+ get_Mouse_Tile_position_Y());
         }
         if(e.getSource()==gravitationtimer){
             if(check_collision(2) == true) {                        //erst wenn er wieder den boden berührt ist isjumping false, weil man sonst unendlich hoch springen kann

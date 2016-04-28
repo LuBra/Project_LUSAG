@@ -6,26 +6,33 @@ import java.awt.image.BufferedImage;
 public class World {
     private int size_x, size_y;
     private int[][] worldmap;
-    //Tiles nicht vergessen get_tile_image und getBegehbar einzutragen
+    private Generator generate;
+    //Tiles nicht vergessen get_tile_image und getBegehbar und getabbau_id einzutragen
     private Tile grass;         //1
     private Tile cloud;         //2
     private Tile rinde;         //3
     private Tile dirt;          //4
+    private Tile stone;         //5
 
     public World(){
-        size_x = 30;
-        size_y = 25;
-        create_world();
+        size_x = 50;
+        size_y = 35;
+        generate = new Generator(size_x,size_y);
+        worldmap = generate.getWorld();
+        //create_world();
 
         grass = new Tile("Tiles//grass.jpg",1);        //tile bild pfad, und abbau ID  1=test
         cloud = new Tile("Tiles//cloud.jpg",1);
         rinde = new Tile("Tiles//rinde.JPG",2);
         dirt =  new Tile("Tiles//dirt.png",1);
+        stone = new Tile("Tiles//stone.png",1);
     }
 
     public void create_world(){
         worldmap = new int[][]{ {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
                                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+                                {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
+                                {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
                                 {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
                                 {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
                                 {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
@@ -64,6 +71,9 @@ public class World {
         if(worldmap[x][y] == 4){
             return dirt.get_tile_pic();
         }
+        if(worldmap[x][y] == 5){
+            return stone.get_tile_pic();
+        }
         else return null;
     }
     public int getSize_x(){return size_x;}
@@ -81,6 +91,9 @@ public class World {
         if(worldmap[x][y] == 4){
             return dirt.isBegehbar();
         }
+        if(worldmap[x][y] == 5){
+            return stone.isBegehbar();
+        }
         else return true;
     }
     public int getAbbau_ID(int x,int y){
@@ -95,6 +108,9 @@ public class World {
         }
         if(worldmap[x][y] == 4){
             return dirt.getAbbau_ID();
+        }
+        if(worldmap[x][y] == 5){
+            return stone.getAbbau_ID();
         }
         else return 0;
     }
