@@ -24,6 +24,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
     private int mauspos_X,mauspos_Y;
     private int zeichnenoffsetspieler_x, zeichnenoffsetspieler_y;
     private int selected_Inventory_Field_X,selected_Inventory_Field_Y;
+    private boolean moveRight, moveLeft, moveJump;
     private boolean is_jumping;
     private char last_pressed_key;
     private Dimension resolution;
@@ -44,6 +45,9 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
         selected_Inventory_Field_X = 0;
         selected_Inventory_Field_Y = 0;
         setVisible(true);
+        moveJump =false;
+        moveLeft = false;
+        moveRight = false;
         timer = new Timer(2,this);
         keytimer = new Timer(15,this);
         jumptimer = new Timer(15,this);
@@ -163,13 +167,21 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
                 selected_Inventory_Field_Y = 0;
             }
             break;
+            case 'a': {moveLeft = true;}
+            break;
+            case 'd': {moveRight = true;}
+            break;
+            case ' ': {moveJump = true;}
+            break;
         }
-        last_pressed_key = e.getKeyChar();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-            last_pressed_key = 'm';
+        if(e.getKeyChar() == 'a') moveLeft = false;
+        else if(e.getKeyChar() == 'd') moveRight = false;
+        else if(e.getKeyChar() == ' ') moveJump = false;
+        //last_pressed_key = 'm';
     }
 
 
@@ -204,27 +216,16 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
             }
         }
         //region Steuerung
-        if(e.getSource()==keytimer){
-            switch (last_pressed_key){                                        //holt offset zum Startpunkt, und addiert bewegung dazu, damit sich die welt bewegt.
-                case ' ':   if(check_collision(1)==true && is_jumping==false) {
-                    //spieler.setOffset_Y(spieler.getOffset_Y() - 2);
-                    jump();
-                }
-                    break;
-                case 's':  if(check_collision(2)==true) {
-                    spieler.setOffset_Y(spieler.getOffset_Y() + 2);
-                }
-                    break;
-                case 'a':   if(check_collision(3)==true) {
-                    spieler.setOffset_X(spieler.getOffset_X() - 2);
-                }
-                    break;
-                case 'd':   if(check_collision(4)==true) {
-                    spieler.setOffset_X(spieler.getOffset_X() + 2);
-                }
-                    break;
+        if(e.getSource()==keytimer){            //siehe keypressed event und Keyreleased Event.
+            if(moveRight == true){
+                if(check_collision(4)==true) {spieler.setOffset_X(spieler.getOffset_X() + 2);}
             }
-
+            if(moveLeft == true){
+                if(check_collision(3)==true) {spieler.setOffset_X(spieler.getOffset_X() - 2);}
+            }
+            if(moveJump == true) {
+                if(check_collision(1)==true && is_jumping==false) { jump(); }
+            }
         }
         //endregion
     }
