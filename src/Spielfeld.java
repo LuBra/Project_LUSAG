@@ -30,7 +30,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
 
     public Spielfeld(){
         setLayout(null);
-        resolution = new Dimension(800,600);               //Fenster Auflösung
+        resolution = new Dimension(1280,720);               //Fenster Auflösung
         setPreferredSize(resolution);
         zeichnenoffsetspieler_x = (int) resolution.getWidth()/2;             //muss zu int gemacht werden weil double
         zeichnenoffsetspieler_y = (int) resolution.getHeight()/2;
@@ -347,7 +347,7 @@ public class Spielfeld extends JPanel implements KeyListener, ActionListener, Mo
         int player_tile_position_X2 = ((spieler.getOffset_X() +zeichnenoffsetspieler_x) + (tilesize/3 +1)) / tilesize;
         int player_tile_position_Y1 = (spieler.getOffset_Y() +zeichnenoffsetspieler_y) /tilesize;
         int player_tile_position_Y2 = ((spieler.getOffset_Y() +zeichnenoffsetspieler_y) + (tilesize-1)) / tilesize;
-        if((x == player_tile_position_X1 || x== player_tile_position_X2) && (y == player_tile_position_Y1 || x == player_tile_position_Y2)){player_collision = true;}
+        if((x == player_tile_position_X1 || x == player_tile_position_X2) && (y == player_tile_position_Y1 || y == player_tile_position_Y2)){player_collision = true;}
         else player_collision = false;
 
         // bereits bebautes gebiet check

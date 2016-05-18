@@ -21,11 +21,11 @@ public class World {
         worldmap = generate.getWorld();
         //create_world();
 
-        grass = new Tile("Tiles//grass.jpg",1);        //tile bild pfad, und abbau ID  1=test
-        cloud = new Tile("Tiles//cloud.jpg",1);
-        rinde = new Tile("Tiles//rinde.JPG",2);
-        dirt =  new Tile("Tiles//dirt.png",1);
-        stone = new Tile("Tiles//stone.png",1);
+        grass = new Tile("Tiles//grass.jpg",1,false);        //tile bild pfad, und abbau ID  1=test
+        cloud = new Tile("Tiles//cloud.jpg",1,false);
+        rinde = new Tile("Tiles//rinde.JPG",2,true);
+        dirt =  new Tile("Tiles//dirt.png",1,false);
+        stone = new Tile("Tiles//stone.png",1,false);
     }
 
     public void create_world(){

@@ -7,18 +7,21 @@ public class Generator {
     private int[][] world;
     private int worldsize_x;
     private int worldsize_y;
+    //genertation options
+    private int number_Trees;
+    private int number_randome_stone;
 
     public Generator(int x, int y){
+        number_Trees = 10;
+        number_randome_stone = 6;
         worldsize_x = x;
         worldsize_y = y;
         init_world();
         fill_stone();
         fill_dirt();
         fill_grass();
-        fill_stone_rand();
-        fill_stone_rand();
-        fill_stone_rand();
-
+        for (int i = 1; i < number_randome_stone ; i++) {fill_stone_rand();}
+        for (int i = 1; i < number_Trees; i++) {place_trees();}
         debug();
 
     }
@@ -61,7 +64,7 @@ public class Generator {
     }
     protected void fill_stone_rand(){
         Random rand = new Random();
-        int posy = rand.nextInt(worldsize_y/4) + worldsize_y/2;
+        int posy = rand.nextInt(worldsize_y/8) + worldsize_y/2 +5;  // worldsize/ 8 damit sie in der oberen hälfte plaziert werden plus 3 damit sie nicht direkt unter der oberfläche sind
         int posx = rand.nextInt(worldsize_x);
         world[posy][posx] = 5;
 
@@ -98,6 +101,15 @@ public class Generator {
                 }
             }
         }
+    }
+    protected void place_trees(){
+        int grasHeight = worldsize_y - (worldsize_y/2); // entspricht der endheight von fill_gras
+        Random rand = new Random();
+        int place_point_x = rand.nextInt(worldsize_x);
+        for (int i = grasHeight-1; i > (grasHeight-10); i--) {
+            world[i][place_point_x] = 3;
+        }
+
     }
     public int[][] getWorld(){return world;}
     protected void debug(){

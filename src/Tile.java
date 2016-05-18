@@ -11,14 +11,14 @@ public class Tile {
     private boolean begehbar;
     private int abbau_ID;
 
-    public Tile(String path, int abbau){
+    public Tile(String path, int abbau, boolean pBegehbar){
 
         try {
             img = ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        begehbar = false;
+        begehbar = pBegehbar;
         abbau_ID = abbau;
     }
     public BufferedImage get_tile_pic(){
