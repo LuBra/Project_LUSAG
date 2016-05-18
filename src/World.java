@@ -13,6 +13,7 @@ public class World {
     private Tile rinde;         //3
     private Tile dirt;          //4
     private Tile stone;         //5
+    private Tile wood;          //6
 
     public World(){
         size_x = 150;
@@ -26,6 +27,7 @@ public class World {
         rinde = new Tile("Tiles//rinde.JPG",2,true);
         dirt =  new Tile("Tiles//dirt.png",1,false);
         stone = new Tile("Tiles//stone.png",1,false);
+        wood = new Tile("Tiles//wood.png",2,false);
     }
 
     public void create_world(){
@@ -74,6 +76,9 @@ public class World {
         if(worldmap[x][y] == 5){
             return stone.get_tile_pic();
         }
+        if(worldmap[x][y] == 6){
+            return wood.get_tile_pic();
+        }
         else return null;
     }
     public int getSize_x(){return size_x;}
@@ -94,6 +99,9 @@ public class World {
         if(worldmap[x][y] == 5){
             return stone.isBegehbar();
         }
+        if(worldmap[x][y] == 6){
+            return wood.isBegehbar();
+        }
         else return true;
     }
     public int getAbbau_ID(int x,int y){
@@ -111,6 +119,9 @@ public class World {
         }
         if(worldmap[x][y] == 5){
             return stone.getAbbau_ID();
+        }
+        if(worldmap[x][y] == 6){
+            return wood.getAbbau_ID();
         }
         else return 0;
     }
