@@ -8,6 +8,8 @@ import java.io.IOException;
  */
 public class Player {
     private int Offset_X, Offset_Y;
+    private BufferedImage spieler_rechts;
+    private BufferedImage spieler_links;
     private BufferedImage spieler;
     private int selected_itemX;
     private int selected_itemY;
@@ -23,10 +25,16 @@ public class Player {
         inventar = new Inventar();
 
         try {
-            spieler = ImageIO.read(new File("Tiles//Player_clean.png"));
+            spieler_rechts = ImageIO.read(new File("Tiles//Player_clean.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            spieler_links = ImageIO.read(new File("Tiles//Player_left.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        spieler = spieler_rechts;
 
     }
 
@@ -66,7 +74,12 @@ public class Player {
         return inventar_size_Y;
     }
 
-    public BufferedImage getSpieler() {
+    public BufferedImage getPlayerImage() {
         return spieler;
+    }
+    public void setPlayerImageDirection(int direction) {
+        if (direction == 0) {spieler = spieler_rechts;}
+        else if (direction == 1) {spieler = spieler_links;}
+        else {spieler = spieler_rechts;}
     }
 }

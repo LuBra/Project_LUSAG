@@ -64,7 +64,7 @@ public class Generator {
     }
     protected void fill_stone_rand(){
         Random rand = new Random();
-        int posy = rand.nextInt(worldsize_y/8) + worldsize_y/2 +5;  // worldsize/ 8 damit sie in der oberen hälfte plaziert werden plus 3 damit sie nicht direkt unter der oberfläche sind
+        int posy = rand.nextInt(worldsize_y/8) + worldsize_y/2 +5;  // worldsize/8 damit sie in der oberen hälfte plaziert werden plus 3 damit sie nicht direkt unter der oberfläche sind
         int posx = rand.nextInt(worldsize_x);
         world[posy][posx] = 5;
 
