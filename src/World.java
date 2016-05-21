@@ -15,19 +15,23 @@ public class World {
     private Tile stone;         //5
     private Tile wood;          //6
 
+    private Tile invisible_wall; //99
+
     public World(){
         size_x = 150;
         size_y = 100;
         generate = new Generator(size_x,size_y);
         worldmap = generate.getWorld();
-        //create_world();
 
-        grass = new Tile("Tiles//grass.jpg",1,false);        //tile bild pfad, und abbau ID  1=test
+        grass = new Tile("Tiles//grass.jpg",1,false);        //tile bild pfad, und abbau ID
         cloud = new Tile("Tiles//cloud.jpg",1,false);
         rinde = new Tile("Tiles//rinde.JPG",2,true);
         dirt =  new Tile("Tiles//dirt.png",1,false);
         stone = new Tile("Tiles//stone.png",1,false);
         wood = new Tile("Tiles//wood.png",2,false);
+
+        invisible_wall = new Tile("Tiles//transparent.png",99,false);
+
     }
 
     public BufferedImage get_tile_image(int x,int y){
@@ -48,6 +52,11 @@ public class World {
         }
         if(worldmap[x][y] == 6){
             return wood.get_tile_pic();
+        }
+
+
+        if(worldmap[x][y] == 99){
+            return invisible_wall.get_tile_pic();
         }
         else return null;
     }
@@ -72,6 +81,11 @@ public class World {
         if(worldmap[x][y] == 6){
             return wood.isBegehbar();
         }
+
+
+        if(worldmap[x][y] == 99){
+            return invisible_wall.isBegehbar();
+        }
         else return true;
     }
     public int getAbbau_ID(int x,int y){
@@ -92,6 +106,11 @@ public class World {
         }
         if(worldmap[x][y] == 6){
             return wood.getAbbau_ID();
+        }
+
+
+        if(worldmap[x][y] == 99){
+            return invisible_wall.getAbbau_ID();
         }
         else return 0;
     }

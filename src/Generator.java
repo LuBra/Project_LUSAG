@@ -22,6 +22,7 @@ public class Generator {
         fill_grass();
         for (int i = 1; i < number_randome_stone ; i++) {fill_stone_rand();}
         for (int i = 1; i < number_Trees; i++) {place_trees();}
+        place_invisible_wall();
         debug();
 
     }
@@ -111,6 +112,16 @@ public class Generator {
         }
 
     }
+    protected void place_invisible_wall(){
+        for (int i = 0; i < worldsize_x ; i++) {
+            world[0][i] = 99;
+            world[worldsize_y-1][i] = 99;
+        }
+        for (int i = 0; i < worldsize_y ; i++) {
+            world[i][0] = 99;
+            world[i][worldsize_x-1] = 99;
+        }
+    }           //Trump Mode
     public int[][] getWorld(){return world;}
     protected void debug(){
         for (int i = 0; i < worldsize_y; i++) {
