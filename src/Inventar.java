@@ -21,6 +21,7 @@ public class Inventar {
         inventar[4][0] = new Item(3,4,"Tiles//rinde.JPG");
         inventar[5][0] = new Item(6,4,"Tiles//wood.png");
         inventar[6][0] = new Item(5,4,"Tiles//stone.png");
+        inventar[7][0] = new Item(7,4,"Tiles//leaf.png");
         /*
             Spitzhacke: Type 1
             Axt:        Type 2

@@ -14,6 +14,7 @@ public class World {
     private Tile dirt;          //4
     private Tile stone;         //5
     private Tile wood;          //6
+    private Tile leaf;          //7
 
     private Tile invisible_wall; //99
 
@@ -29,6 +30,7 @@ public class World {
         dirt =  new Tile("Tiles//dirt.png",1,false);
         stone = new Tile("Tiles//stone.png",1,false);
         wood = new Tile("Tiles//wood.png",2,false);
+        leaf = new Tile("Tiles//leaf.png",2,true);
 
         invisible_wall = new Tile("Tiles//transparent.png",99,false);
 
@@ -53,6 +55,10 @@ public class World {
         if(worldmap[x][y] == 6){
             return wood.get_tile_pic();
         }
+        if(worldmap[x][y] == 7){
+            return leaf.get_tile_pic();
+        }
+
 
 
         if(worldmap[x][y] == 99){
@@ -81,6 +87,9 @@ public class World {
         if(worldmap[x][y] == 6){
             return wood.isBegehbar();
         }
+        if(worldmap[x][y] == 7){
+            return leaf.isBegehbar();
+        }
 
 
         if(worldmap[x][y] == 99){
@@ -106,6 +115,9 @@ public class World {
         }
         if(worldmap[x][y] == 6){
             return wood.getAbbau_ID();
+        }
+        if(worldmap[x][y] == 7){
+            return leaf.getAbbau_ID();
         }
 
 

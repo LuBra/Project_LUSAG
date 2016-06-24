@@ -106,9 +106,22 @@ public class Generator {
     protected void place_trees(){
         int grasHeight = worldsize_y - (worldsize_y/2); // entspricht der endheight von fill_gras
         Random rand = new Random();
-        int place_point_x = rand.nextInt(worldsize_x);
+        int place_point_x = rand.nextInt(worldsize_x-5)+2;
+        int TreeTop_X = place_point_x;
+        int TreeTop_Y = grasHeight -10;
         for (int i = grasHeight-1; i > (grasHeight-10); i--) {
             world[i][place_point_x] = 3;
+        }
+        world[TreeTop_Y][TreeTop_X] = 7;
+        for (int i = TreeTop_Y; i < grasHeight -4 ; i++) {
+            world[i][TreeTop_X-1] = 7;
+            world[i][TreeTop_X+1] = 7;
+
+        }
+        for (int i = TreeTop_Y + 1; i < grasHeight -5 ; i++) {
+            world[i][TreeTop_X-2] = 7;
+            world[i][TreeTop_X+2] = 7;
+
         }
 
     }
